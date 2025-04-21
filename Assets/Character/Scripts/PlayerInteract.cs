@@ -1,33 +1,44 @@
+using Interface;
 using UnityEngine;
 
-public class CharacterInteract : MonoBehaviour
+public class PlayerInteract : MonoBehaviour
 {
-    [SerializeField] private KeyCode interactKey = KeyCode.E;
-    private GameObject _currentInteractable;
+    public float interactionRange = 1f;
+    public KeyCode interactionKey = KeyCode.E;
+    public LayerMask interactableLayer;
 
-    private void Update()
+    void Update()
     {
-        CheckInteract();
-    }
-    private void CheckInteract()
-    {
-        if (Input.GetKeyDown(interactKey) && _currentInteractable != null)
+        if (Input.GetKeyDown(interactionKey))
         {
-            print("Interacted with " + _currentInteractable.name);
+            TryInteract();
         }
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+
+    void TryInteract()
     {
-        if (collision.CompareTag("Interactable"))
+        Vector2 origin = transform.position;
+        Vector2 direction = Vector2.right * transform.localScale.x;
+        RaycastHit2D hit = Physics2D.Raycast(origin, direction, interactionRange, interactableLayer);
+        
+        //Debug.DrawRay(origin, direction * interactionRange, Color.red);
+
+        if (hit.collider != null)
         {
-            _currentInteractable = collision.gameObject;
+            IInteractable interactable = hit.collider.GetComponent<IInteractable>();
+            if (interactable != null)
+            {
+                interactable.Interact();
+            }
         }
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Interactable") && collision.gameObject == _currentInteractable)
+        
+        if (hit.collider != null)
         {
-            _currentInteractable = null;
+            Debug.Log("HIT: " + hit.collider.name);
+        }
+        else
+        {
+            Debug.Log("NO HIT");
         }
     }
 }

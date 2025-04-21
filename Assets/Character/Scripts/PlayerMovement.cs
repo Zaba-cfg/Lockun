@@ -7,11 +7,11 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] private KeyCode downKey = KeyCode.S;
     [SerializeField] private float moveSpeed = 40f;
     [SerializeField] private float stairSpeed = 20f;
-
-    private GameObject _stair;
+    
     private Rigidbody2D _rb;
     private Vector2 _movementInput;
     private float _originalGravity;
+    private bool _isStairOn;
     private bool _left;
     private bool _right;
     private bool _up;
@@ -30,6 +30,7 @@ public class CharacterMovement : MonoBehaviour
     {
         MoveCharacter();
     }
+    
     // Input handler
     private void HandleInput()
     {
@@ -43,16 +44,18 @@ public class CharacterMovement : MonoBehaviour
             _right = true;
         }
 
-        if (Input.GetKey(upKey) && _stair != null)
+        if (Input.GetKey(upKey) && _isStairOn)
         {
             _up = true;
         }
-
-        if (Input.GetKey(downKey) && _stair != null)
+        
+        if (Input.GetKey(downKey) && _isStairOn)
         {
             _down = true;
+            stairSpeed = 20;
         }
     }
+    
     // Move with rigidbody
     private void MoveCharacter()
     {
@@ -72,6 +75,7 @@ public class CharacterMovement : MonoBehaviour
         {
             _rb.AddForce(Vector2.up * stairSpeed);
             _up = false;
+            _rb.gravityScale = 0f;
         }
         
         if (_down)
@@ -86,15 +90,14 @@ public class CharacterMovement : MonoBehaviour
     {
         if (collision.CompareTag("Stair"))
         {
-            _stair = collision.gameObject;
-            _rb.gravityScale = 0f;
+            _isStairOn = true;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("Stair") && collision.gameObject == _stair)
+        if (collision.CompareTag("Stair"))
         {
-            _stair = null;
+            _isStairOn = false;
             _rb.gravityScale = _originalGravity;
         }
     }
