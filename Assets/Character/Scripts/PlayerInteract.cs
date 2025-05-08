@@ -1,44 +1,49 @@
 using Interface;
 using UnityEngine;
 
-public class PlayerInteract : MonoBehaviour
+namespace Character.Scripts
 {
-    public float interactionRange = 1f;
-    public KeyCode interactionKey = KeyCode.E;
-    public LayerMask interactableLayer;
-
-    void Update()
+    public class PlayerInteract : MonoBehaviour
     {
-        if (Input.GetKeyDown(interactionKey))
-        {
-            TryInteract();
-        }
-    }
+        public float interactionRange = 1f;
+        public KeyCode interactionKey = KeyCode.E;
+        public LayerMask interactableLayer;
 
-    void TryInteract()
-    {
-        Vector2 origin = transform.position;
-        Vector2 direction = Vector2.right * transform.localScale.x;
-        RaycastHit2D hit = Physics2D.Raycast(origin, direction, interactionRange, interactableLayer);
-        
-        //Debug.DrawRay(origin, direction * interactionRange, Color.red);
-
-        if (hit.collider != null)
+        void Update()
         {
-            IInteractable interactable = hit.collider.GetComponent<IInteractable>();
-            if (interactable != null)
+            if (Input.GetKeyDown(interactionKey))
             {
-                interactable.Interact();
+                TryInteract();
             }
         }
+
+        void TryInteract()
+        {
+            Vector2 origin = transform.position;
+            Vector2 direction = Vector2.right * transform.localScale.x;
+            RaycastHit2D hit = Physics2D.Raycast(origin, direction, interactionRange, interactableLayer);
+            float duration = 2.0f;
         
-        if (hit.collider != null)
-        {
-            Debug.Log("HIT: " + hit.collider.name);
-        }
-        else
-        {
-            Debug.Log("NO HIT");
+            // Debug
+            Debug.DrawRay(origin, direction * interactionRange, Color.red, duration);
+
+            if (hit.collider != null)
+            {
+                IInteractable interactable = hit.collider.GetComponent<IInteractable>();
+                if (interactable != null)
+                {
+                    interactable.Interact();
+                }
+            }
+        
+            if (hit.collider != null)
+            {
+                Debug.Log("HIT: " + hit.collider.name);
+            }
+            else
+            {
+                Debug.Log("NO HIT");
+            }
         }
     }
 }
