@@ -5,11 +5,11 @@ namespace Character.Scripts
 {
     public class PlayerInteract : MonoBehaviour
     {
-        public float interactionRange = 1f;
-        public KeyCode interactionKey = KeyCode.E;
-        public LayerMask interactableLayer;
+        [SerializeField] private float interactionRange = 1f;
+        [SerializeField] private KeyCode interactionKey = KeyCode.E;
+        [SerializeField] private LayerMask interactableLayer;
 
-        void Update()
+        private void Update()
         {
             if (Input.GetKeyDown(interactionKey))
             {
@@ -17,26 +17,25 @@ namespace Character.Scripts
             }
         }
 
-        void TryInteract()
+        private void TryInteract()
         {
             Vector2 origin = transform.position;
             Vector2 direction = Vector2.right * transform.localScale.x;
             RaycastHit2D hit = Physics2D.Raycast(origin, direction, interactionRange, interactableLayer);
             float duration = 2.0f;
-        
-            // Debug
-            Debug.DrawRay(origin, direction * interactionRange, Color.red, duration);
+            
+            Debug.DrawRay(origin, direction * interactionRange, Color.red, duration); // Debug line
 
             if (hit.collider != null)
             {
-                IInteractable interactable = hit.collider.GetComponent<IInteractable>();
-                if (interactable != null)
+                IInteractable[] interactables = hit.collider.GetComponents<IInteractable>(); // Get interactable
+                foreach (var interactable in interactables)
                 {
                     interactable.Interact();
                 }
             }
-        
-            if (hit.collider != null)
+            
+            if (hit.collider != null) //Debug log
             {
                 Debug.Log("HIT: " + hit.collider.name);
             }

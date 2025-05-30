@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Character.Scripts
 {
-    public class CharacterMovement : MonoBehaviour
+    public class PlayerMovement : MonoBehaviour
     {
         [SerializeField] private KeyCode leftKey = KeyCode.A;
         [SerializeField] private KeyCode rightKey = KeyCode.D;
@@ -10,7 +10,9 @@ namespace Character.Scripts
         [SerializeField] private KeyCode downKey = KeyCode.S;
         [SerializeField] private float moveSpeed = 40f;
         [SerializeField] private float stairSpeed = 20f;
-    
+
+        public bool canMove = true;
+        
         private Rigidbody2D _rb;
         private Vector2 _movementInput;
         private float _originalGravity;
@@ -33,10 +35,10 @@ namespace Character.Scripts
         {
             MoveCharacter();
         }
-    
-        // Input handler
-        private void HandleInput()
+        private void HandleInput() // Input handler
         {
+            if (!canMove) return;
+            
             if (Input.GetKey(leftKey))
             {
                 _left = true;
@@ -58,9 +60,7 @@ namespace Character.Scripts
                 stairSpeed = 20;
             }
         }
-    
-        // Move with rigidbody
-        private void MoveCharacter()
+        private void MoveCharacter() // Move with rigidbody
         {
             if (_left)
             {
@@ -80,7 +80,6 @@ namespace Character.Scripts
             {
                 _rb.AddForce(Vector2.up * stairSpeed);
                 _up = false;
-                _rb.gravityScale = 0f;
             }
         
             if (_down)
@@ -89,13 +88,12 @@ namespace Character.Scripts
                 _down = false;
             }
         }
-    
-        // Detect possible stairs
-        private void OnTriggerEnter2D(Collider2D collision)
+        private void OnTriggerEnter2D(Collider2D collision) // Detect possible stairs
         {
             if (collision.CompareTag("Stair"))
             {
                 _isStairOn = true;
+                _rb.gravityScale = 0f;
             }
         }
         private void OnTriggerExit2D(Collider2D collision)

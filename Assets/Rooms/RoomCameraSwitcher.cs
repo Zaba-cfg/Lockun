@@ -1,8 +1,9 @@
+using System;
 using Interface;
 using Unity.Cinemachine;
 using UnityEngine;
 
-namespace Managers
+namespace Rooms
 {
     public class RoomCameraSwitcher : MonoBehaviour, IInteractable
     {
@@ -10,7 +11,8 @@ namespace Managers
 
         public void Interact()
         {
-            CinemachineCamera[] allCams = FindObjectsByType<CinemachineCamera>(FindObjectsSortMode.None);
+            CinemachineCamera[]
+                allCams = FindObjectsByType<CinemachineCamera>(FindObjectsSortMode.None); // Find and set new camera
 
             foreach (var cam in allCams)
                 cam.Priority = 0;
