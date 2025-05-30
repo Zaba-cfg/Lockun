@@ -65,14 +65,14 @@ namespace Character.Scripts
             if (_left)
             {
                 _rb.AddForce(Vector2.left * moveSpeed);
-                transform.localScale = new Vector3(-1, 2, 1);
+                transform.localScale = new Vector3(-1, 1, 1);
                 _left = false;
             }
 
             if (_right)
             {
                 _rb.AddForce(Vector2.right * moveSpeed);
-                transform.localScale = new Vector3(1, 2, 1);
+                transform.localScale = new Vector3(1, 1, 1);
                 _right = false;
             }
 
