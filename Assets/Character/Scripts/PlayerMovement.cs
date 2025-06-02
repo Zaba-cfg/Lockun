@@ -6,26 +6,22 @@ namespace Character.Scripts
     {
         [SerializeField] private KeyCode leftKey = KeyCode.A;
         [SerializeField] private KeyCode rightKey = KeyCode.D;
-        [SerializeField] private KeyCode upKey = KeyCode.W;
-        [SerializeField] private KeyCode downKey = KeyCode.S;
         [SerializeField] private float moveSpeed = 40f;
-        [SerializeField] private float stairSpeed = 20f;
 
         public bool canMove = true;
         
         private Rigidbody2D _rb;
         private Vector2 _movementInput;
         private float _originalGravity;
-        private bool _isStairOn;
+        private float _originalDamping;
         private bool _left;
         private bool _right;
-        private bool _up;
-        private bool _down;
 
         private void Awake()
         {
             _rb = GetComponent<Rigidbody2D>();
             _originalGravity = _rb.gravityScale;
+            _originalDamping = _rb.linearDamping;
         }
         private void Update()
         {
@@ -48,20 +44,11 @@ namespace Character.Scripts
             {
                 _right = true;
             }
-
-            if (Input.GetKey(upKey) && _isStairOn)
-            {
-                _up = true;
-            }
-        
-            if (Input.GetKey(downKey) && _isStairOn)
-            {
-                _down = true;
-                stairSpeed = 20;
-            }
         }
         private void MoveCharacter() // Move with rigidbody
         {
+            if (!canMove) return;
+            
             if (_left)
             {
                 _rb.AddForce(Vector2.left * moveSpeed);
@@ -75,33 +62,21 @@ namespace Character.Scripts
                 transform.localScale = new Vector3(1, 1, 1);
                 _right = false;
             }
-
-            if (_up)
-            {
-                _rb.AddForce(Vector2.up * stairSpeed);
-                _up = false;
-            }
-        
-            if (_down)
-            {
-                _rb.AddForce(Vector2.down * stairSpeed);
-                _down = false;
-            }
         }
         private void OnTriggerEnter2D(Collider2D collision) // Detect possible stairs
         {
             if (collision.CompareTag("Stair"))
             {
-                _isStairOn = true;
                 _rb.gravityScale = 0f;
+                _rb.linearDamping = 10f;
             }
         }
         private void OnTriggerExit2D(Collider2D collision)
         {
             if (collision.CompareTag("Stair"))
             {
-                _isStairOn = false;
                 _rb.gravityScale = _originalGravity;
+                _rb.linearDamping = _originalDamping;
             }
         }
     }

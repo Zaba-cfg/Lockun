@@ -1,4 +1,3 @@
-using System;
 using Interface;
 using Unity.Cinemachine;
 using UnityEngine;

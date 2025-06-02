@@ -8,9 +8,12 @@ namespace Character.Scripts
         [SerializeField] private float interactionRange = 1f;
         [SerializeField] private KeyCode interactionKey = KeyCode.E;
         [SerializeField] private LayerMask interactableLayer;
+        
+        public bool canInteract = true;
 
         private void Update()
         {
+            if (!canInteract) return;
             if (Input.GetKeyDown(interactionKey))
             {
                 TryInteract();
