@@ -67,6 +67,7 @@ namespace Character.Scripts
         {
             if (collision.CompareTag("Stair"))
             {
+                _rb.AddForce(Vector2.up * moveSpeed);
                 _rb.gravityScale = 0f;
                 _rb.linearDamping = 10f;
             }

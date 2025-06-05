@@ -11,6 +11,7 @@ namespace Rooms
         [SerializeField] private bool teleport;
         [SerializeField] private GameObject whichDoor;
         [SerializeField] private bool flipSpriteRight;
+        [SerializeField] private bool flipSpriteLeft;
 
         private GameObject _player;
         private bool _movingPlayer;
@@ -37,9 +38,14 @@ namespace Rooms
                     _player.transform.position = whichDoor.transform.position;
                 }
 
-                if (flipSpriteRight) // flip sprite to the right
+                if (flipSpriteRight) // Flip sprite to the right
                 {
                     _player.transform.localScale = new Vector3(1, 1, 1);
+                }
+
+                if (flipSpriteLeft) // Flip sprite to the right
+                {
+                    _player.transform.localScale = new Vector3(-1, 1, 1);
                 }
             }
         }

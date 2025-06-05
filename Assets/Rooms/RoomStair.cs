@@ -84,33 +84,36 @@ namespace Rooms
                     _cameraSwitched = true;
                 }
 
-                _player.transform.position = Vector3.MoveTowards(
-                    _player.transform.position,
-                    target.position,
-                    moveSpeed * Time.deltaTime
-                );
-
-                if (Vector3.Distance(_player.transform.position, target.position) < 0.1f)
+                if (target != null)
                 {
-                    if (_phase == 1)
+                    _player.transform.position = Vector3.MoveTowards(
+                        _player.transform.position,
+                        target.position,
+                        moveSpeed * Time.deltaTime
+                    );
+
+                    if (Vector3.Distance(_player.transform.position, target.position) < 0.1f)
                     {
-                        _phase = 2;
-                        _cameraSwitched = false;
-                    }
-                    else if (_phase == 2)
-                    {
-                        _phase = 0;
-                        _movingPlayer = false;
-                        _flipflop = !_flipflop;
+                        if (_phase == 1)
+                        {
+                            _phase = 2;
+                            _cameraSwitched = false;
+                        }
+                        else if (_phase == 2)
+                        {
+                            _phase = 0;
+                            _movingPlayer = false;
+                            _flipflop = !_flipflop;
 
-                        var movementScript = _player.GetComponent<PlayerMovement>();
-                        var interactScript = _player.GetComponent<PlayerInteract>();
+                            var movementScript = _player.GetComponent<PlayerMovement>();
+                            var interactScript = _player.GetComponent<PlayerInteract>();
 
-                        if (movementScript != null)
-                            movementScript.canMove = true;
+                            if (movementScript != null)
+                                movementScript.canMove = true;
 
-                        if (interactScript != null)
-                            interactScript.canInteract = true;
+                            if (interactScript != null)
+                                interactScript.canInteract = true;
+                        }
                     }
                 }
             }
