@@ -6,15 +6,15 @@ namespace Rooms
 {
     public class RoomWallActivate : MonoBehaviour, IInteractable
     {
-        [SerializeField] private GameObject _offWall;
-        [SerializeField] private GameObject _onWall;
+        [SerializeField] private GameObject offWall;
+        [SerializeField] private GameObject onWall;
         [SerializeField] private float delayBeforeActivate = 1f; // Wait x seconds
 
         public void Interact()
         {
-            if (_offWall != null)
+            if (offWall != null)
             {
-                _offWall.SetActive(false);
+                offWall.SetActive(false);
                 StartCoroutine(ActivateWallAfterDelay());
             }
         }
@@ -23,9 +23,9 @@ namespace Rooms
         {
             yield return new WaitForSeconds(delayBeforeActivate);
             
-            if (_onWall != null)
+            if (onWall != null)
             {
-                _onWall.SetActive(true);
+                onWall.SetActive(true);
             }
         }
     }

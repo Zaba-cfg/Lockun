@@ -15,7 +15,7 @@ namespace Puzzles.Living
         [SerializeField] private Color colorOn = Color.green;
         [SerializeField] private Color colorOff = Color.red;
 
-        public void Interact()
+        public void Interact() // Set lever ON or OFF
         {
             if (!manager.hasWon)
             {

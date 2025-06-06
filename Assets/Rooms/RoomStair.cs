@@ -3,7 +3,7 @@ using Interface;
 using UnityEngine;
 using Unity.Cinemachine;
 
-namespace Rooms
+namespace Rooms // FIX THIS SCRIPT, ES UN QUILOMBO
 {
     public class RoomStair : MonoBehaviour, IInteractable
     {

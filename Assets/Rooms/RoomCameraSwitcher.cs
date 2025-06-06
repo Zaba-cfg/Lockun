@@ -11,7 +11,7 @@ namespace Rooms
         public void Interact()
         {
             CinemachineCamera[]
-                allCams = FindObjectsByType<CinemachineCamera>(FindObjectsSortMode.None); // Find and set new camera
+                allCams = FindObjectsByType<CinemachineCamera>(FindObjectsSortMode.None); // Find all cameras and set selected camera
 
             foreach (var cam in allCams)
                 cam.Priority = 0;

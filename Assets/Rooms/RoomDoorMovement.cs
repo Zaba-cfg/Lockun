@@ -25,7 +25,7 @@ namespace Rooms
                 var movementScript = _player.GetComponent<PlayerMovement>();
                 var interactScript = _player.GetComponent<PlayerInteract>();
                 
-                if (movementScript != null) // Disable input
+                if (movementScript != null) // Disable inputs
                 {
                     movementScript.canMove = false;
                     interactScript.canInteract = false;
@@ -43,7 +43,7 @@ namespace Rooms
                     _player.transform.localScale = new Vector3(1, 1, 1);
                 }
 
-                if (flipSpriteLeft) // Flip sprite to the right
+                if (flipSpriteLeft) // Flip sprite to the left
                 {
                     _player.transform.localScale = new Vector3(-1, 1, 1);
                 }
@@ -54,7 +54,8 @@ namespace Rooms
         {
             if (_movingPlayer && _player != null) // Move player
             {
-                _player.transform.position = Vector3.MoveTowards(_player.transform.position,
+                _player.transform.position = Vector3.MoveTowards
+                    (_player.transform.position,
                     targetPosition.position,
                     moveSpeed * Time.deltaTime
                     );
@@ -66,7 +67,7 @@ namespace Rooms
                     var interactScript = _player.GetComponent<PlayerInteract>();
                     if (movementScript != null)
                     {
-                        movementScript.canMove = true; // Enable input
+                        movementScript.canMove = true; // Enable inputs
                         interactScript.canInteract = true;
                     }
                 }

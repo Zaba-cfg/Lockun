@@ -167,8 +167,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52d5972cb7504beda96f0fa800be0e9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _offWall: {fileID: 55173439}
-  _onWall: {fileID: 1781403947}
+  offWall: {fileID: 55173439}
+  onWall: {fileID: 1781403947}
   delayBeforeActivate: 1
 --- !u!114 &40036426
 MonoBehaviour:
@@ -334,9 +334,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1121515574}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -540}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &45464683
@@ -1596,8 +1596,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52d5972cb7504beda96f0fa800be0e9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _offWall: {fileID: 1394066220}
-  _onWall: {fileID: 757602142}
+  offWall: {fileID: 1394066220}
+  onWall: {fileID: 757602142}
   delayBeforeActivate: 1
 --- !u!114 &291182966
 MonoBehaviour:
@@ -2045,8 +2045,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52d5972cb7504beda96f0fa800be0e9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _offWall: {fileID: 1761070888}
-  _onWall: {fileID: 1808459041}
+  offWall: {fileID: 1761070888}
+  onWall: {fileID: 1808459041}
   delayBeforeActivate: 1
 --- !u!1 &480716021
 GameObject:
@@ -4464,8 +4464,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52d5972cb7504beda96f0fa800be0e9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _offWall: {fileID: 757602142}
-  _onWall: {fileID: 1394066220}
+  offWall: {fileID: 757602142}
+  onWall: {fileID: 1394066220}
   delayBeforeActivate: 1
 --- !u!114 &887075317
 MonoBehaviour:
@@ -4969,8 +4969,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52d5972cb7504beda96f0fa800be0e9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _offWall: {fileID: 1808459041}
-  _onWall: {fileID: 1761070888}
+  offWall: {fileID: 1808459041}
+  onWall: {fileID: 1761070888}
   delayBeforeActivate: 1
 --- !u!1 &989910632
 GameObject:
@@ -5325,7 +5325,7 @@ GameObject:
   - component: {fileID: 1011775255}
   - component: {fileID: 1011775256}
   m_Layer: 0
-  m_Name: PuzzleManager
+  m_Name: PuzzleManagerLiving
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5413,8 +5413,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52d5972cb7504beda96f0fa800be0e9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _offWall: {fileID: 1781403947}
-  _onWall: {fileID: 55173439}
+  offWall: {fileID: 1781403947}
+  onWall: {fileID: 55173439}
   delayBeforeActivate: 1
 --- !u!114 &1036509751
 MonoBehaviour:
@@ -5454,7 +5454,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1036509748}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
@@ -6991,7 +6991,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1323583817}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}

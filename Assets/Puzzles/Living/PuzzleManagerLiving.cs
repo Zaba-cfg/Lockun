@@ -19,11 +19,12 @@ namespace Puzzles.Living
         {
             for (int i = 0; i < correctPattern.Length; i++)
             {
+                // Fix and try other form
                 correctPattern[i] = Random.value > 0.5f; // 50% chance true or false
             }
         }
 
-        private void Update()
+        private void Update() // Timer countdown
         { 
             if (!startTimer || hasWon) return;
 
@@ -36,7 +37,7 @@ namespace Puzzles.Living
             }
         }
         
-        private void UpdateTimerUI()
+        private void UpdateTimerUI() // Update timer in UI
         {
             if (timerText != null)
             {
@@ -45,7 +46,7 @@ namespace Puzzles.Living
             }
         }
         
-        public void CheckPattern()
+        public void CheckPattern() // Check if puzzle completed
         {
             for (int i = 0; i < correctPattern.Length; i++)
             {
@@ -62,7 +63,7 @@ namespace Puzzles.Living
                 Destroy(timerText);
             }
         }
-        public void TimerStarted()
+        public void TimerStarted() // Start timer
         {
             if (!startTimer)
             {

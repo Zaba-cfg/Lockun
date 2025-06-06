@@ -31,7 +31,7 @@ namespace Character.Scripts
 
             if (hit.collider != null)
             {
-                IInteractable[] interactables = hit.collider.GetComponents<IInteractable>(); // Get interactable
+                IInteractable[] interactables = hit.collider.GetComponents<IInteractable>(); // Get all interactable
                 foreach (var interactable in interactables)
                 {
                     interactable.Interact();
