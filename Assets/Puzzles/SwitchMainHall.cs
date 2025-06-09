@@ -7,20 +7,20 @@ namespace Puzzles
     public class SwitchMainHall : MonoBehaviour, IInteractable
     {
         private bool _switched;
-        private RoomDoorUnlocker _whichDoor;
+        private RoomDoorUnlocker _whichItem;
         [SerializeField] private GameObject tutorialText;
         [SerializeField] private GameObject arrow;
         
         private void Start()
         {
-            _whichDoor = GetComponent<RoomDoorUnlocker>();
+            _whichItem = GetComponent<RoomDoorUnlocker>();
         }
         
         public void Interact()
         {
             if (!_switched)
             {
-                _whichDoor.UnlockDoor();
+                _whichItem.UnlockDoor();
                 transform.localScale = new Vector3((float)-0.3, (float)0.35, 1);
                 GetComponent<SpriteRenderer>().color = Color.green;
                 _switched = true;
