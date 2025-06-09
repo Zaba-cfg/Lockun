@@ -1,3 +1,5 @@
+using Character.Scripts;
+using Rooms;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -6,10 +8,13 @@ namespace Puzzles.Living
 {
     public class PuzzleManagerLiving : MonoBehaviour
     {
-        [SerializeField] private GameObject doorToUnlock;
-        [SerializeField] private float timer = 60f;
-
+        [SerializeField] private float timer = 40f;
+        [SerializeField] private GameObject player;
+        [SerializeField] private GameObject puzzleLiving;
+        private RoomDoorUnlocker _roomDoorUnlocker;
         public TextMeshProUGUI timerText;
+        public TextMeshProUGUI livingText;
+        public TextMeshProUGUI livingText2;
         public bool startTimer;
         public bool hasWon;
         public bool[] currentPattern = new bool[5];
@@ -17,12 +22,32 @@ namespace Puzzles.Living
 
         private void Start()
         {
+            _roomDoorUnlocker = GetComponent<RoomDoorUnlocker>();
+
+            int trueCount = 0;
+
+            // Random values
             for (int i = 0; i < correctPattern.Length; i++)
             {
-                // Fix and try other form
-                correctPattern[i] = Random.value > 0.5f; // 50% chance true or false
+                correctPattern[i] = Random.value > 0.5f;
+
+                if (correctPattern[i])
+                    trueCount++;
+            }
+
+            // If less than 2, force it
+            while (trueCount < 2)
+            {
+                int randomIndex = Random.Range(0, correctPattern.Length);
+                if (!correctPattern[randomIndex])
+                {
+                    correctPattern[randomIndex] = true;
+                    trueCount++;
+                }
             }
         }
+
+
 
         private void Update() // Timer countdown
         { 
@@ -48,6 +73,9 @@ namespace Puzzles.Living
         
         public void CheckPattern() // Check if puzzle completed
         {
+            var playerSpeed = player.GetComponent<PlayerMovement>();
+            playerSpeed.moveSpeed = 60f;
+            
             for (int i = 0; i < correctPattern.Length; i++)
             {
                 if (currentPattern[i] != correctPattern[i])
@@ -58,9 +86,12 @@ namespace Puzzles.Living
             {
                 hasWon = true;
                 Debug.Log("PUZZLE RESOLVED");
-                var door2DCollider = doorToUnlock.GetComponent<Collider2D>();
-                door2DCollider.enabled = true;
+                _roomDoorUnlocker.UnlockDoor();
                 Destroy(timerText);
+                Destroy(livingText);
+                Destroy(livingText2);
+                playerSpeed.moveSpeed = 40f;
+                Destroy(puzzleLiving);
             }
         }
         public void TimerStarted() // Start timer
@@ -69,6 +100,8 @@ namespace Puzzles.Living
             {
                 startTimer = true;
                 timerText.gameObject.SetActive(true);
+                livingText.gameObject.SetActive(true);
+                livingText2.gameObject.SetActive(true);
             }
         }
     }

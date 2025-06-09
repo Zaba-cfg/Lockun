@@ -6,9 +6,10 @@ namespace Character.Scripts
     {
         [SerializeField] private KeyCode leftKey = KeyCode.A;
         [SerializeField] private KeyCode rightKey = KeyCode.D;
-        [SerializeField] private float moveSpeed = 40f;
+        public float moveSpeed = 40f;
 
         public bool canMove = true;
+        public Animator animator;
         
         private Rigidbody2D _rb;
         private Vector2 _movementInput;
@@ -26,6 +27,7 @@ namespace Character.Scripts
         private void Update()
         {
             HandleInput();
+            animator.SetFloat("Speed", _movementInput.sqrMagnitude);
         }
         private void FixedUpdate()
         {
@@ -44,6 +46,8 @@ namespace Character.Scripts
             {
                 _right = true;
             }
+            
+            _movementInput = new Vector2((_right ? 1 : 0) + (_left ? -1 : 0), 0); // Feed Animator
         }
         private void MoveCharacter() // Move with rigidbody
         {
