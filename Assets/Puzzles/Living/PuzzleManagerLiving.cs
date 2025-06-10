@@ -17,6 +17,7 @@ namespace Puzzles.Living
         public TextMeshProUGUI livingText2;
         public bool startTimer;
         public bool hasWon;
+        public RoomCameraCompletedPuzzle roomCameraCompletedPuzzle;
         public bool[] currentPattern = new bool[5];
         public bool[] correctPattern = new bool[5];
 
@@ -85,13 +86,13 @@ namespace Puzzles.Living
             if (!hasWon)
             {
                 hasWon = true;
+                roomCameraCompletedPuzzle.MoveCamera();
                 Debug.Log("PUZZLE RESOLVED");
                 _roomDoorUnlocker.UnlockDoor();
                 Destroy(timerText);
                 Destroy(livingText);
                 Destroy(livingText2);
                 playerSpeed.moveSpeed = 40f;
-                Destroy(puzzleLiving);
             }
         }
         public void TimerStarted() // Start timer

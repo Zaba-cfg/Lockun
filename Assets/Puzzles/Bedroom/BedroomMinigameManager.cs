@@ -10,6 +10,7 @@ namespace Puzzles.Bedroom
         public GameObject player;
         public bool hasWon;
         private RoomDoorUnlocker _roomDoorUnlocker;
+        public RoomCameraCompletedPuzzle roomCameraCompletedPuzzle;
 
         public void CheckWinCondition()
         {
@@ -26,12 +27,12 @@ namespace Puzzles.Bedroom
 
         private void WinGame()
         {
+            roomCameraCompletedPuzzle.MoveCamera();
             Debug.Log("PUZZLE SOLVED!");
             hasWon = true;
             player.GetComponent<PlayerMovement>().moveSpeed = 40f;
             _roomDoorUnlocker = GetComponent<RoomDoorUnlocker>();
             _roomDoorUnlocker.UnlockDoor();
-            Destroy(gameObject);
         }
     }
 }

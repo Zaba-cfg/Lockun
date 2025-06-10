@@ -1,19 +1,22 @@
 using System.Collections;
 using Interface;
 using Rooms;
+using Text.Scripts;
 using UnityEngine;
 
 namespace Character.Scripts
 {
     public class PlayerKey : MonoBehaviour, IInteractable
     {
+        [SerializeField] private FloatingText floatingText;//Floating text
         private RoomDoorUnlocker _whichItem;
         public GameObject player;
+        public RoomCameraCompletedPuzzle roomCameraCompletedPuzzle;
         public void Interact()
         {
+            roomCameraCompletedPuzzle.MoveCamera();
             _whichItem.UnlockDoor();
-            //PlayerText.Instance.ShowMessage("I think the door in the previous room just opened.");
-
+            floatingText.Show("I think a door just opened.");//Floating text
             StartCoroutine(HideAndDestroyAfterDelay(5f));
             GetComponent<SpriteRenderer>().enabled = false;
         }
