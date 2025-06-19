@@ -6,8 +6,17 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 001f9b26066a57540a956a37803c873c
+  - enabled: 1
     path: Assets/Scenes/LockunHouse.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/Scenes/GameOverScreen.unity
+    guid: 15a9a6fae9e2abe46b841946bf5a598c
+  - enabled: 1
+    path: Assets/Scenes/VictoryScreen.unity
+    guid: 1878e7a9617d91c4692e64e773ec022b
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

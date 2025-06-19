@@ -10,7 +10,7 @@ namespace Puzzles.Library.Scripts
         {
             if (collision.CompareTag("Player"))
             {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                SceneManager.LoadScene("GameOverScreen");
             }
         }
     }

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Character.Scripts
 {
@@ -6,6 +7,7 @@ namespace Character.Scripts
     {
         [SerializeField] private KeyCode leftKey = KeyCode.A;
         [SerializeField] private KeyCode rightKey = KeyCode.D;
+        [SerializeField] private KeyCode escape = KeyCode.Escape;
         public float moveSpeed = 40f;
 
         public bool canMove = true;
@@ -26,6 +28,11 @@ namespace Character.Scripts
         }
         private void Update()
         {
+            if (Input.GetKey(escape))
+            {
+                SceneManager.LoadScene("MainMenu");
+            }
+            
             HandleInput();
             animator.SetFloat("Speed", _movementInput.sqrMagnitude); // Speed for animator
         }

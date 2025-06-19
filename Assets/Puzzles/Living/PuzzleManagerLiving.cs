@@ -59,7 +59,7 @@ namespace Puzzles.Living
 
             if (timer <= 0f)
             {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                SceneManager.LoadScene("GameOverScreen");
             }
         }
         
