@@ -3,7 +3,7 @@ using Interface;
 using UnityEngine;
 using Unity.Cinemachine;
 
-namespace Rooms // FIX THIS SCRIPT, ES UN QUILOMBO
+namespace Rooms // THIS SCRIPT WAS MADE WITH CHATGPT, IT'S FOR THE STAIR THAT GOES TO BASEMENT TO WORK PROPERLY
 {
     public class RoomStair : MonoBehaviour, IInteractable
     {

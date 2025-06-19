@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace Puzzles
+namespace Puzzles // THIS SCRIPT DOESN'T WORK
 {
     public class CameraShake : MonoBehaviour
     {

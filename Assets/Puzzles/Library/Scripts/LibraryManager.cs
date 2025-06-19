@@ -14,7 +14,7 @@ namespace Puzzles.Library.Scripts
         public bool trapActivated;
         public float speed = 2f;
         
-        public void CloseRoom()
+        public void CloseRoom() // Close door and try to kill the player with the roof if fails the puzzle
         {
             var door = doorToLock.GetComponent<Collider2D>();
             var sprite = spriteToChange.GetComponent<SpriteRenderer>();

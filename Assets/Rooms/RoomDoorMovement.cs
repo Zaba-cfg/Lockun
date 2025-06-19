@@ -25,7 +25,7 @@ namespace Rooms
                 var movementScript = _player.GetComponent<PlayerMovement>();
                 var interactScript = _player.GetComponent<PlayerInteract>();
                 
-                if (movementScript != null) // Disable inputs
+                if (movementScript != null) // Disable inputs & Interact
                 {
                     movementScript.canMove = false;
                     interactScript.canInteract = false;
@@ -68,7 +68,7 @@ namespace Rooms
                     if (movementScript != null)
                     {
                         movementScript.canMove = true; // Enable inputs
-                        interactScript.canInteract = true;
+                        interactScript.canInteract = true; // Enable interact
                     }
                 }
             }

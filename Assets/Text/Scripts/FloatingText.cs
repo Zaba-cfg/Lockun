@@ -21,7 +21,7 @@ namespace Text.Scripts
 
         private void Update()
         {
-            if (_textMesh.enabled && player != null)
+            if (_textMesh.enabled && player != null) // Make the text follow the player's head
             {
                 transform.position = player.transform.position + new Vector3(offsetX, offsetY, 0);
             }
@@ -33,7 +33,7 @@ namespace Text.Scripts
             StartCoroutine(ShowAndHide(message));
         }
 
-        private IEnumerator ShowAndHide(string message)
+        private IEnumerator ShowAndHide(string message) // Show and hide the floating text
         {
             _textMesh.text = message;
             _textMesh.enabled = true;

@@ -19,7 +19,7 @@ namespace Puzzles.MainHall
         
         public void Interact()
         {
-            if (!_switched)
+            if (!_switched) // Unlock tutorial door
             {
                 _whichItem.UnlockDoor();
                 roomCameraCompletedPuzzle.MoveCamera();

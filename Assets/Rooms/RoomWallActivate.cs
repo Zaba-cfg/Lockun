@@ -12,7 +12,7 @@ namespace Rooms
 
         public void Interact()
         {
-            if (offWall != null)
+            if (offWall != null) // Set Active the desire walls to let player cross to the next room
             {
                 offWall.SetActive(false);
                 StartCoroutine(ActivateWallAfterDelay());

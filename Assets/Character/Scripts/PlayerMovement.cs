@@ -27,7 +27,7 @@ namespace Character.Scripts
         private void Update()
         {
             HandleInput();
-            animator.SetFloat("Speed", _movementInput.sqrMagnitude);
+            animator.SetFloat("Speed", _movementInput.sqrMagnitude); // Speed for animator
         }
         private void FixedUpdate()
         {
@@ -47,7 +47,7 @@ namespace Character.Scripts
                 _right = true;
             }
             
-            _movementInput = new Vector2((_right ? 1 : 0) + (_left ? -1 : 0), 0); // Feed Animator
+            _movementInput = new Vector2((_right ? 1 : 0) + (_left ? -1 : 0), 0); // Feed the animator to handle animations
         }
         private void MoveCharacter() // Move with rigidbody
         {

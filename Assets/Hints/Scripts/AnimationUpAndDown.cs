@@ -12,7 +12,7 @@ namespace Hints.Scripts
         {
             _startPosition = transform.position;
         }
-        void Update() // Up and Down animation
+        void Update() // Up and Down animation, simple animation made with ChatGPT
         {
             if (gameObject != null)
             {

@@ -13,7 +13,7 @@ namespace Character.Scripts
 
         private void Update()
         {
-            if (!canInteract) return;
+            if (!canInteract) return; // Block interact if desire
             if (Input.GetKeyDown(interactionKey))
             {
                 TryInteract();
@@ -31,14 +31,14 @@ namespace Character.Scripts
 
             if (hit.collider != null)
             {
-                IInteractable[] interactables = hit.collider.GetComponents<IInteractable>(); // Get all interactable
+                IInteractable[] interactables = hit.collider.GetComponents<IInteractable>(); // Get all scripts interactable
                 foreach (var interactable in interactables)
                 {
                     interactable.Interact();
                 }
             }
             
-            if (hit.collider != null) //Debug log
+            if (hit.collider != null) //Debug log of raycast hit
             {
                 Debug.Log("HIT: " + hit.collider.name);
             }

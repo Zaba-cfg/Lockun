@@ -10,11 +10,12 @@ namespace Puzzles.Bedroom
         public GameObject player;
         public bool hasWon;
         private RoomDoorUnlocker _roomDoorUnlocker;
-        public RoomCameraCompletedPuzzle roomCameraCompletedPuzzle;
+        
+        public RoomCameraCompletedPuzzle roomCameraCompletedPuzzle; // Camera completed puzzle
 
         public void CheckWinCondition()
         {
-            foreach (var s in switches)
+            foreach (var s in switches) // Check if all switches are ON
             {
                 if (!s.isOn)
                 {

@@ -27,7 +27,7 @@ namespace Puzzles.Living
 
             int trueCount = 0;
 
-            // Random values
+            // Set random values
             for (int i = 0; i < correctPattern.Length; i++)
             {
                 correctPattern[i] = Random.value > 0.5f;
@@ -36,7 +36,7 @@ namespace Puzzles.Living
                     trueCount++;
             }
 
-            // If less than 2, force it
+            // If less than 2 are true, force it
             while (trueCount < 2)
             {
                 int randomIndex = Random.Range(0, correctPattern.Length);

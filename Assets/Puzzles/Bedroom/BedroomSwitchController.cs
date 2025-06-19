@@ -16,7 +16,7 @@ namespace Puzzles.Bedroom
             _manager = Object.FindFirstObjectByType<BedroomMinigameManager>();
         }
 
-        private void Update()
+        private void Update() // Timer to set OFF the switches if the player takes too long
         {
             if (isOn && !_manager.hasWon)
             {

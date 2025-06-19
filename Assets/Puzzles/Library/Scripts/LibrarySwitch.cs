@@ -10,12 +10,14 @@ namespace Puzzles.Library.Scripts
     {
         [SerializeField] private bool correctAnswer;
         [SerializeField] private GameObject switchManager;
-        public RoomCameraCompletedPuzzle roomCameraCompletedPuzzle;
-        public FloatingText floatingText;
+        
+        public RoomCameraCompletedPuzzle roomCameraCompletedPuzzle; // Camera completed puzzle
+        
+        public FloatingText floatingText; // Floating text
         public GameObject unlockFrontDoor;
         public GameObject player;
         private bool _correctAnswer;
-        public void Interact()
+        public void Interact() // Check if the interacted object is correct
         {
             if (correctAnswer)
             {

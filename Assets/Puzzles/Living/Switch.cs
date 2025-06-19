@@ -11,7 +11,6 @@ namespace Puzzles.Living
 
         private bool _isOn;
         
-        [Header("Colors")]
         [SerializeField] private Color colorOn = Color.green;
         [SerializeField] private Color colorOff = Color.red;
 

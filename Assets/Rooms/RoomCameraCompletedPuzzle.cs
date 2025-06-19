@@ -7,7 +7,7 @@ namespace Rooms
 {
     public class RoomCameraCompletedPuzzle : MonoBehaviour
     {
-        public CinemachineCamera cameraToShowTemporarily; // Cámara a mostrar (por ejemplo, del inicio)
+        public CinemachineCamera cameraToShowTemporarily; // Camera from the front door
         public GameObject player;
 
         private CinemachineCamera _previousCamera;
@@ -17,17 +17,17 @@ namespace Rooms
 
         public void MoveCamera()
         {
-            // Guardar todas las cámaras
+            // Save all cameras
             CinemachineCamera[] allCams = FindObjectsByType<CinemachineCamera>(FindObjectsSortMode.None);
             _previousCamera = GetActiveCamera(allCams);
 
-            // Activar la cámara temporal
+            // Temporary active to front door camera
             SetActiveCamera(cameraToShowTemporarily, allCams);
 
-            // Bloquear movimiento del jugador
+            // Block all movement inputs
             player.GetComponent<PlayerMovement>().canMove = false;
 
-            // Esperar y volver a la cámara anterior
+            // Wait and go back to the previous camera
             StartCoroutine(ReturnToPreviousCameraAfterDelay(allCams));
             
             spriteAsset.GetComponent<SpriteRenderer>().color = color;
@@ -37,14 +37,14 @@ namespace Rooms
         {
             yield return new WaitForSeconds(_delay);
 
-            // Volver a la cámara anterior
+            // Go back to previous camera
             SetActiveCamera(_previousCamera, allCams);
 
-            // Desbloquear movimiento del jugador
+            // Unlock player movement inputs
             player.GetComponent<PlayerMovement>().canMove = true;
         }
 
-        private void SetActiveCamera(CinemachineCamera cameraToActivate, CinemachineCamera[] allCams)
+        private void SetActiveCamera(CinemachineCamera cameraToActivate, CinemachineCamera[] allCams) // Set the camera by priority
         {
             foreach (var cam in allCams)
                 cam.Priority = 0;
@@ -53,7 +53,7 @@ namespace Rooms
                 cameraToActivate.Priority = 10;
         }
 
-        private CinemachineCamera GetActiveCamera(CinemachineCamera[] allCams)
+        private CinemachineCamera GetActiveCamera(CinemachineCamera[] allCams) // Select the camera by priority
         {
             CinemachineCamera active = null;
             int highest = int.MinValue;

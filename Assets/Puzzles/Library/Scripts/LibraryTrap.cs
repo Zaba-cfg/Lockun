@@ -6,7 +6,7 @@ namespace Puzzles.Library.Scripts
 {
     public class LibraryTrap : MonoBehaviour
     {
-        private void OnTriggerEnter2D(Collider2D collision)
+        private void OnTriggerEnter2D(Collider2D collision) // Kill the player upon touching the roof
         {
             if (collision.CompareTag("Player"))
             {

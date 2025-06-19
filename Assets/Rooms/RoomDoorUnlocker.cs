@@ -9,7 +9,7 @@ namespace Rooms
         [SerializeField] private GameObject spriteToChange;
         
         public Sprite unlockSprite;
-        public void UnlockDoor()
+        public void UnlockDoor() // Unlock the desire door
         {
             var door2DCollider = doorToUnlock.GetComponent<Collider2D>();
             var doorSpriteRenderer = spriteToChange.GetComponent<SpriteRenderer>();

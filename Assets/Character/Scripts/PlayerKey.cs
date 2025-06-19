@@ -8,16 +8,18 @@ namespace Character.Scripts
 {
     public class PlayerKey : MonoBehaviour, IInteractable
     {
-        [SerializeField] private FloatingText floatingText;//Floating text
+        [SerializeField] private FloatingText floatingText; //Floating text
         private RoomDoorUnlocker _whichItem;
         public GameObject player;
-        public RoomCameraCompletedPuzzle roomCameraCompletedPuzzle;
+        public RoomCameraCompletedPuzzle roomCameraCompletedPuzzle; // Camera completed puzzle
         public void Interact()
         {
             roomCameraCompletedPuzzle.MoveCamera();
             _whichItem.UnlockDoor();
-            floatingText.Show("I think a door just opened.");//Floating text
-            StartCoroutine(HideAndDestroyAfterDelay(5f));
+            
+            floatingText.Show("I think a door just opened."); //Floating text
+            
+            StartCoroutine(HideAndDestroyAfterDelay(5f)); // Using coroutine to destroy it so the floating text doesn't break
             GetComponent<SpriteRenderer>().enabled = false;
         }
 
